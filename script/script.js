@@ -34,7 +34,7 @@ const selectionPage = document.getElementById("selectionPage");
 //here for selection page
 let levelIndex;
 
-let movingSpeed = 2;
+let movingSpeed = 8;
 //here for level buttons condition
 const levels = [
     //example of catch the flower game
@@ -43,7 +43,10 @@ const levels = [
     {numberOfBakery:20, typeOfFood:2}
 ]
 
-const foods = ["sweets", "cupcake", "cupcake2"]
+const foods = ["bread", "cookies1", "cookies2",
+                "cookies3", "cupcake1", "cupcake2",
+                "cupcake3", "donuts1", "donuts2",
+                "pie1", "pie2"]
 
 let startGame;
 let swipe;
@@ -273,12 +276,13 @@ function Question(){
         answerFood.classList.add("answer")
 
         answerFood.y = Math.floor(gameBorder.height /4)
+        answerFood.x= Math.floor(gameBorder.width /12)
         answerFood.style.bottom = answerFood.y + "px"
         if(j == 0){
-            answerFood.style.left = (gameBorder.width - size) + "px"
+            answerFood.style.left = (gameBorder.width - size - answerFood.x) + "px"
         }
         else{
-            answerFood.style.left = 0 + "px"
+            answerFood.style.left = answerFood.x + "px"
         }
 
         game.appendChild(answerFood)
@@ -310,7 +314,7 @@ function moveOthers(){
         let done  = false
 
         allFoods.forEach(function(food){
-            food.y -=3
+            food.y -= movingSpeed
             food.style.bottom = food.y + "px"
 
             if(food.y <= answerFood.y){
@@ -349,10 +353,10 @@ function moving(){
                 else{
                     endGame()
                 }
-            }, 2000)
+            }, 1000)
         }
         if(right){
-            firstFood.x += 5;
+            firstFood.x += movingSpeed;
             firstFood.style.left = firstFood.x + "px" 
             if(firstFood.x > (gameBorder.width - size)){
                 right = false
@@ -361,7 +365,7 @@ function moving(){
             }
         }
         if(left){
-            firstFood.x -= 5;
+            firstFood.x -= movingSpeed;
             firstFood.style.left = firstFood.x + "px" 
             if(firstFood.x < 0){
                 left = false
@@ -390,32 +394,8 @@ function endGame(){
 
     let pass = total / 2
 
-    //this is for first version
-    if(score < pass){
-        lose.currentTime = 0
-        lose.play()
-        medal.classList.add("hidden")
-        scoreText.textContent = "You tried!"
-        words1.innerHTML = "Good try!"
-        words2.textContent = "do better next time"
-    }
-    else{
-        clap.currentTime = 0
-        clap.play() 
-        medal.classList.remove("hidden")
-        scoreText.textContent = "Good job!"
-        words1.innerHTML = `You got <br> ${score} right!`
-        words2.textContent = ""
-        setTimeout(function(){
-            confetti.start()
-            setTimeout(function(){
-                confetti.stop()
-            }, 2000)
-        }, 500)
-    }
-
     //this is for second version
-    /*let starScore = total / 5;
+    let starScore = total / 5;
     //change the star image according the score;
     if(score < pass){
         lose.currentTime = 0
@@ -464,7 +444,7 @@ function endGame(){
         }, 500)
     }
     words1.innerHTML = "Your score"
-    words2.textContent = score + "/" + total */
+    words2.textContent = score + "/" + total
 }
 
 /*prevent double tag zoom*/

@@ -1,0 +1,85 @@
+/*add here for code changes*/
+
+/*Commonly Changed Items*/
+:root{
+    --backgroundColour:#593C7E;
+    --buttonBackgroundColor:#F25528;
+    --buttonTextColor:white;
+    --textDarkBlueColor:#014598;
+    --gameTopBackground: white;
+    --backgroundColour2:#593C7E;
+    --scoreTextBackground:#FBCE59;
+    --borderColor2:#F25528;
+    --pointBackground:#F25528;
+    --finalPopUpBackground:white;
+    --darkPurple:#351F52;
+}
+
+/*startPage*/
+.title{
+    width: inherit;
+}
+
+/*SelectionPage*/
+.choices, .instruction{
+    color: var(--textWhiteColor);
+}
+
+/*InstructionPage*/
+.details{
+    color: var(--textBlackColor);
+}
+
+/*GamePage*/
+.point{
+    color: var(--textWhiteColor);
+}
+
+.beckground{
+    position: relative;
+    padding: 20px;
+    align-self: center;
+    text-align: center;
+    color: var(--textWhiteColor);
+    font-size: 25px;
+    justify-self: center;
+    background-color: var(--backgroundColour);
+    z-index: 20;
+}
+
+.game{
+    position: unset;
+}
+
+.foods, .answer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+
+.answer{
+    border-radius: 10px;
+    background-color: var(--darkPurple);
+}
+
+.foods img, .answer img{
+    width: 90%;
+    height: auto;
+}
+
+.fadedIn{
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/*ipad*/
+@media screen and (min-width:768px) and (max-width:1023px) {
+    
+    .foods{
+        width: 200px;
+        height: 200px;
+    }
+}
